@@ -18,7 +18,7 @@ public class Program {
 		Scanner sc = new Scanner(System.in);
 
 		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-	
+
 		try {
 			System.out.println("Entre com os dados do aluguel: ");
 			System.out.print("Modelo do carro: ");
@@ -39,19 +39,18 @@ public class Program {
 			rentalService.processInvoice(cr);
 
 			System.out.println("FATURA: ");
-			System.out.println("Pagamente basico: " + cr.getInvoice().getBasicPayment());
-			System.out.println("Imposto: " + cr.getInvoice().getTax());
-			System.out.println("Pagamento total: " + cr.getInvoice().getTotalPayment());
+			System.out.println("Pagamente basico: " + String.format("%.2f", cr.getInvoice().getBasicPayment()));
+			System.out.println("Imposto: " + String.format("%.2f", cr.getInvoice().getTax()));
+			System.out.println("Pagamento total: " + String.format("%.2f",  cr.getInvoice().getTotalPayment()));
 			sc.close();
 
 		} catch (DateTimeParseException e) {
 			System.out.println("Digite a data no formato do exemplo!");
-		}catch(RuntimeException e) {
+		} catch (RuntimeException e) {
 			System.out.println("Erro inesperado!");
+		} finally {
 		}
-		finally {
-		}
-			sc.close();
-		}
+		sc.close();
+	}
 
 }
